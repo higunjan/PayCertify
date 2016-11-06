@@ -5,12 +5,11 @@
   "scripts": {
     "start": "node app.js"
   },
+  "author": "Gunjan <patelgunjan777@gmail.com>",
   "dependencies": {
     "express": "~4.13.3",
     "node-libcurl": "*",
     "node-jquery-param": "*",
     "xml2js": "^0.4.17"
-  },
-  "author": "Gunjan <patelgunjan777@gmail.com>",
-  "license": "ISC"
+  }
 }

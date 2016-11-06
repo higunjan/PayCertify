@@ -38,6 +38,7 @@ $(document).ready(function() {
 	}
 	
 	$("form.formsubmit").submit(function(e){
+		$(".progress-indicator").show();
 		e.preventDefault();
 		$('form input#InvNum').val(Date.now());
 		var _POST = $(this).serializeObject();
@@ -64,7 +65,7 @@ $(document).ready(function() {
 			console.log(params);
 			$.post( "/charge", params)
 				.done(function( data ) {
-					alert("Data Retrive successfully");
+					$(".progress-indicator").hide();
 					var return1 = data;
 					Ret['message'] = JSON.stringify(return1, null, 4);
 					$('pre#charge').append(Ret['message']);

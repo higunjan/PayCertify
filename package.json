@@ -2,9 +2,8 @@
   "name": "wrapperdemo",
   "version": "1.0.0",
   "description": "Payment Gatway demo",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "~4.13.3",
@@ -12,6 +11,6 @@
     "node-jquery-param": "*",
     "xml2js": "^0.4.17"
   },
-  "author": "Gunjan",
+  "author": "Gunjan <patelgunjan777@gmail.com>",
   "license": "ISC"
 }

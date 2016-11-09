@@ -46,12 +46,9 @@ $(document).ready(function() {
 			params = {},
 			action = _POST.action;
 
-		// console.log("findParamString : ",_POST)
-
 		var formvar = getParam(action);
-		
-		// console.log(formvar);
 
+		console.log("action : ",action)
 		if(action == "charge"){
 			Ret.action = action;
 			formvar.forEach(function(val, indaaix){
@@ -70,7 +67,31 @@ $(document).ready(function() {
 					Ret['message'] = JSON.stringify(return1, null, 4);
 					$('pre#charge').append(Ret['message']);
 				});
-		}else{
+		} else if(  action == 'customer' ) {
+			Ret.action = action;
+			
+			formvar.forEach(function(val, indaaix){
+				// console.log(val, indaaix);
+				if (_POST[val]) {
+					params[val] = _POST[val].trim();
+				}else{
+					params[val] = '';
+				}
+			})
+			$.post( "/ManageCustomer", params)
+				.done(function( data ) {
+					console.log(data)
+					$(".progress-indicator").hide();
+					var return1 = data;
+					Ret['message'] = JSON.stringify(return1, null, 4);
+					$('pre#ManageCustomer').append(Ret['message']);
+				});
+			// //response
+			// $return = \Encgateway\ManageCustomer::create( $params );
+			
+			// $Ret['message'] = $return;
+			
+		} else {
 			console.log("Please select charge.");
 		}
 	})

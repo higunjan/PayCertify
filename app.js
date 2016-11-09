@@ -1,7 +1,8 @@
 var express = require('express'),
     http = require('http'),
     bodyParser = require("body-parser"),
-    Charge = require('./routes/charge.js');
+    Charge = require('./routes/charge.js'),
+    ManageCustomer = require('./routes/ManageCustomer.js');
 
 GLOBAL.getApiKey = "7E35FC46-C951-2D2F-FB42-7795F3D24C60";
 GLOBAL.apiBase = 'http://demo.paycertify.net/';
@@ -23,6 +24,8 @@ app.all('/*', function (req, res, next) {
 });
 
 app.post('/charge', Charge.create);
+app.post('/ManageCustomer', ManageCustomer.create);
+
 app.get('/charge', Charge.create);
 
 

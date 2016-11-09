@@ -1,8 +1,6 @@
 var filter = require('./filter.js');
 
 exports.create = function (req, res){
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 	var params = req.body,
 		data = {};

@@ -86,13 +86,66 @@ $(document).ready(function() {
 					Ret['message'] = JSON.stringify(return1, null, 4);
 					$('pre#ManageCustomer').append(Ret['message']);
 				});
+			
+		} else if(  $action == 'storecard' ) {
+			Ret.action = action;
+			
+			formvar.forEach(function(val, indaaix){
+				// console.log(val, indaaix);
+				if (_POST[val]) {
+					params[val] = _POST[val].trim();
+				}else{
+					params[val] = '';
+				}
+			})
+			$.post( "/StoreCard", params)
+				.done(function( data ) {
+					console.log(data)
+					$(".progress-indicator").hide();
+					var return1 = data;
+					Ret['message'] = JSON.stringify(return1, null, 4);
+					$('pre#ManageCustomer').append(Ret['message']);
+				});
+			
 			// //response
-			// $return = \Encgateway\ManageCustomer::create( $params );
+			// $return = \Encgateway\StoreCard::create( $params );
 			
 			// $Ret['message'] = $return;
 			
-		} else {
-			console.log("Please select charge.");
+		} else if(  $action == 'processstoredcard' ) {
+			
+			$Ret['action'] = $action;
+			
+			foreach($formvar as $k=>$v) {
+				
+				if(isset($_POST[$v]))
+					$params[$v] = trim($_POST[$v]);
+				else 
+					$params[$v] =  '';
+			}
+			
+			//response
+			$return = \Encgateway\ProcessStoredCard::create( $params );
+			
+			$Ret['message'] = $return;
+			
+		} else if(  $action == 'contract' ) {
+			
+			$Ret['action'] = $action;
+			
+			foreach($formvar as $k=>$v) {
+				
+				if(isset($_POST[$v]))
+					$params[$v] = trim($_POST[$v]);
+				else 
+					$params[$v] =  '';
+			}
+			
+			//response
+			$return = \Encgateway\ManageContract::create( $params );
+			
+			$Ret['message'] = $return;
+			
 		}
 	})
 

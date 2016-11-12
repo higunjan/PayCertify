@@ -27,6 +27,8 @@ app.all('/*', function (req, res, next) {
 app.post('/charge', Charge.create);
 app.post('/ManageCustomer', ManageCustomer.create);
 app.post('/StoreCard', StoreCard.create);
+app.post('/ProcessStoredCard', StoreCard.create);
+app.post('/ManageContract', StoreCard.create);
 
 app.get('/charge', Charge.create);
 

@@ -87,7 +87,7 @@ $(document).ready(function() {
 					$('pre#ManageCustomer').append(Ret['message']);
 				});
 			
-		} else if(  $action == 'storecard' ) {
+		} else if(  action == 'storecard' ) {
 			Ret.action = action;
 			
 			formvar.forEach(function(val, indaaix){
@@ -104,47 +104,47 @@ $(document).ready(function() {
 					$(".progress-indicator").hide();
 					var return1 = data;
 					Ret['message'] = JSON.stringify(return1, null, 4);
-					$('pre#ManageCustomer').append(Ret['message']);
+					$('pre#StoreCard').append(Ret['message']);
+				});
+		} else if(  action == 'processstoredcard' ) {
+			Ret.action = action;
+			
+			formvar.forEach(function(val, indaaix){
+				if (_POST[val]) {
+					params[val] = _POST[val].trim();
+				}else{
+					params[val] = '';
+				}
+			})
+			
+			$.post( "/ProcessStoredCard", params)
+				.done(function( data ) {
+					console.log(data)
+					$(".progress-indicator").hide();
+					var return1 = data;
+					Ret['message'] = JSON.stringify(return1, null, 4);
+					$('pre#ProcessStoredCard').append(Ret['message']);
 				});
 			
-			// //response
-			// $return = \Encgateway\StoreCard::create( $params );
+		} else if(  action == 'contract' ) {
+			Ret.action = action;
 			
-			// $Ret['message'] = $return;
+			formvar.forEach(function(val, indaaix){
+				if (_POST[val]) {
+					params[val] = _POST[val].trim();
+				}else{
+					params[val] = '';
+				}
+			})
 			
-		} else if(  $action == 'processstoredcard' ) {
-			
-			$Ret['action'] = $action;
-			
-			foreach($formvar as $k=>$v) {
-				
-				if(isset($_POST[$v]))
-					$params[$v] = trim($_POST[$v]);
-				else 
-					$params[$v] =  '';
-			}
-			
-			//response
-			$return = \Encgateway\ProcessStoredCard::create( $params );
-			
-			$Ret['message'] = $return;
-			
-		} else if(  $action == 'contract' ) {
-			
-			$Ret['action'] = $action;
-			
-			foreach($formvar as $k=>$v) {
-				
-				if(isset($_POST[$v]))
-					$params[$v] = trim($_POST[$v]);
-				else 
-					$params[$v] =  '';
-			}
-			
-			//response
-			$return = \Encgateway\ManageContract::create( $params );
-			
-			$Ret['message'] = $return;
+			$.post( "/ManageContract", params)
+				.done(function( data ) {
+					console.log(data)
+					$(".progress-indicator").hide();
+					var return1 = data;
+					Ret['message'] = JSON.stringify(return1, null, 4);
+					$('pre#ManageContract').append(Ret['message']);
+				});
 			
 		}
 	})

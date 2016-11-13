@@ -16,8 +16,8 @@ exports.create = function (req, res){
 		var ret = 1;//self::validParams($params);
 		if(ret == 1){
 			filter._doTrans(params, processors, function(results){
+				console.log("response : ", results);
 				var response = results.Response;
-				console.log("response : ", response);
 
 				if(response['TransactionResult']['Result'] && response['TransactionResult']['Result'] == 0){
 					data['success'] = 1;

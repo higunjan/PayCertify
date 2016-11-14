@@ -25,8 +25,11 @@ exports.create = function (req, res){
 		if(ret){
 			filter._doTrans(params, processors, function(results){
 				var response = results.Response;
-				console.log("response : ", response);
-
+				var responseAry = Object.keys(response);
+				responseAry.forEach(function(val,ind){
+					response[val] = response[val] ? [response[val][0].replace(/(\r\n|\n|\r)/gm,"")] : response[val];
+				});
+				console.log("response1 : ", response);
 				data['response'] = response; 
 				
 				if(response['Result']){

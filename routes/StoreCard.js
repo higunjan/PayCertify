@@ -4,6 +4,9 @@ var filter = require('./filter.js'),
 exports.create = function (req, res){
 	var params = req.body,
 		data = {};
+	data['params'] 	= params;
+	data['success']	= 0;
+	data['error'] 	= '';
 	
 	var processors = "StoreCard";
 

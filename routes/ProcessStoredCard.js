@@ -19,7 +19,7 @@ exports.create = function (req, res){
 				console.log("response : ", results);
 				var response = results.Response;
 
-				if(response['TransactionResult']['Result'] && response['TransactionResult']['Result'] == 0){
+				if(response['TransactionResult'] && response['TransactionResult']['Result'] && response['TransactionResult']['Result'] == 0){
 					data['success'] = 1;
 				}
 				if(response['ExtData']){

@@ -17,11 +17,12 @@ exports.create = function (req, res){
 		if(ret == 1){
 			filter._doTrans(params, processors, function(results){
 				console.log("response : ", results);
+				
+				var response = results.Response;
 				var responseAry = Object.keys(response);
 				responseAry.forEach(function(val,ind){
 					response[val] = response[val] ? [response[val][0].replace(/(\r\n|\n|\r)/gm,"")] : response[val];
 				});
-				var response = results.Response;
 
 				if(response['TransactionResult'] && response['TransactionResult']['Result'] && response['TransactionResult']['Result'] == 0){
 					data['success'] = 1;
